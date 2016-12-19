@@ -1,0 +1,14 @@
+FROM tensorflow/tensorflow:latest
+
+RUN pip install 'keras==1.1.2' && \
+    pip install 'pandas==0.19.1' && \
+    pip install 'h5py==2.6.0' && \
+    pip install 'seaborn==0.7.1' && \
+    pip install 'scikit-learn==0.18.1' && \
+    pip install 'tqdm==4.10.0'
+
+RUN jupyter nbextension enable --py --sys-prefix widgetsnbextension
+
+RUN rm -r /notebooks
+
+CMD sh -c 'jupyter notebook --ip=0.0.0.0 --no-browser --notebook-dir=/notebooks'
